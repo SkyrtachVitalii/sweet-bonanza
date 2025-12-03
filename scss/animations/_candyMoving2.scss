@@ -1,0 +1,14 @@
+@keyframes candy-moving2 {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  25% {
+    transform: translate(calc(-50% - 2px), calc(-50% - 2px));
+  }
+  75% {
+    transform: translate(calc(-50% + 2px), calc(-50% + 2px));
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}

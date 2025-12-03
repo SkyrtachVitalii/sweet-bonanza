@@ -1,0 +1,6 @@
+@keyframes explode {
+  0%   { transform: translateY(0) scale(1);     opacity: 1; }
+  25%  { transform: translateY(calc(-1 * var(--hop))) scale(1.06); }
+  55%  { transform: translateY(0) scale(1.00);  opacity: 1; }
+  100% { transform: translateY(0) scale(1.00);  opacity: 0; }
+}

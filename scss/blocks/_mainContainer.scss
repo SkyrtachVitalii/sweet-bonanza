@@ -1,0 +1,130 @@
+@use "../animations/lighting";
+@use "../animations/person-moving";
+@use "../animations/candyMoving";
+@use "../animations/candyMoving2";
+
+.mainContainer {
+  width: 100vw;
+  height: 100dvh;
+  padding-inline: clamp(16px, calc(16px + (64 * (100vw - 360px) / 1560)), 80px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-image: image-set(
+    url("/img/mainContainer/bg_1920_1x.webp") 1x,
+    url("/img/mainContainer/bg_1920_2x.webp") 2x
+  );
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  color: #fff;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  &__person {
+    position: absolute;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 7;
+    &--1 {
+      width: 20vw;
+      top: 70%;
+      left: 37%;
+      animation: candy-moving 4s linear 0s infinite normal both;
+    }
+    &--2 {
+      width: 10vw;
+      top: 9%;
+      right: 4%;
+      animation: candy-moving2 4s linear 0.4s infinite normal both;
+    }
+  }
+  &__shadow {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    width: 100%;
+    &--top {
+      top: 0;
+      display: none;
+    }
+    &--bottom {
+      bottom: 0;
+    }
+  }
+  &__decorImgBeforeShadow {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100dvh;
+  }
+}
+
+@media (max-width: 1366px) {
+  .mainContainer {
+    background-image: image-set(
+      url("/img/mainContainer/bg_1366_1x.webp") 1x,
+      url("/img/mainContainer/bg_1366_2x.webp") 2x
+    );
+  }
+}
+@media (max-width: 1023px) {
+  .mainContainer {
+    &__person {
+      &--1 {
+        top: 70%;
+        left: 9%;
+      }
+      &--2 {
+        width: 16vw;
+        top: 12%;
+        right: 16%;
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .mainContainer {
+    background-image: image-set(
+      url("/img/mainContainer/bg_576_1x.webp") 1x,
+      url("/img/mainContainer/bg_576_2x.webp") 2x
+    );
+    &__person {
+      z-index: 3;
+      &--1 {
+        top: initial;
+        bottom: 6%;
+        left: 6%;
+        width: 33vw;
+      }
+      &--2 {
+        width: 23vw;
+        top: 22%;
+        right: -9%;
+      }
+    }
+    &__shadow {
+      &--top {
+        display: block;
+        height: 64dvh;
+        width: 100%;
+      }
+      &--bottom {
+        height: 30dvh;
+        width: 100%;
+      }
+    }
+    &__decorImgBeforeShadow {
+      display: block;
+      z-index: 5;
+    }
+  }
+}

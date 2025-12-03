@@ -1,0 +1,4 @@
+@keyframes winPulse {
+  0%   { transform: scale(1);   filter: brightness(1);   }
+  100% { transform: scale(1.06); filter: brightness(1.25); }
+}

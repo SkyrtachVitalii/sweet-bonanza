@@ -1,0 +1,182 @@
+@use "../animations/scaling";
+
+.mainContent {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  z-index: 6;
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  &__gameInfoContainerMobile {
+    display: none;
+  }
+  &__gameInfo {
+    width: clamp(400px, calc(400px + (246 * ((100vw - 1023px) / 897))), 646px);
+    margin-bottom: 200px;
+  }
+  &__gameInfoShadow {
+    display: none;
+  }
+  &__gameInfoImg {
+    & img {
+      width: clamp(98px, calc(8.6vw + 59px), 234px);
+      aspect-ratio: 92/71;
+    }
+  }
+  &__gameInfoText {
+    font-size: clamp(40px, calc(1.795vw + 33.54px), 68px);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 110%;
+    text-transform: uppercase;
+  }
+  &__gameInfoTextGameName {
+    background: linear-gradient(180deg, #e221f4 31.25%, #ffe8aa 65.87%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(40px, calc(1.795vw + 33.54px), 68px);
+    font-style: normal;
+    line-height: 110%;
+    text-transform: uppercase;
+  }
+  &__game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__btn {
+    display: flex;
+    inline-size: clamp(260px, calc(20.5 * var(--vw-freeze-1100)), 445px);
+    block-size: clamp(44px, calc(6 * var(--vw-freeze-1100)), 66px);
+    margin: 61px auto 0;
+    padding-block: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 445px;
+    height: 66px;
+    border-radius: 6px;
+    background: #e5ff3a;
+    color: #2a2e0a;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1;
+    transition: transform 0.3s ease, background-color 0.2s ease, color 0.2s ease;
+    animation: scaling 1s linear infinite alternate;
+    will-change: transform; /* підказка браузеру для кращої продуктивності */
+    &:hover {
+      transform: scale(1.06);
+    }
+    &:active {
+      background: #d1ec26;
+      color: #14141a;
+    }
+    &[aria-disabled="true"] {
+      pointer-events: none;
+    }
+  }
+}
+
+/* Дбайливо до користувачів з вимкненою анімацією */
+@media (prefers-reduced-motion: reduce) {
+  .mainContent {
+    &__btn {
+      animation: none;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .mainContent {
+    &__container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    &__gameInfoContainer {
+      display: none;
+    }
+    &__gameInfoContainerMobile {
+      display: block;
+    }
+    &__gameInfo {
+      transform: none;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+    &__gameInfoImg {
+      display: flex;
+      justify-content: center;
+    }
+    &__gameInfoText {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    &__btn {
+      margin: 16px auto 0;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .mainContent {
+    &__container {
+      justify-content: space-around;
+    }
+    &__gameInfo {
+      width: 100%;
+      transform: none;
+      position: relative;
+      margin-top: max(0px, calc((100vh - 612px) * 0.2));
+    }
+    &__gameInfoImg {
+      margin-bottom: 16px;
+      margin-top: 12px;
+      & img {
+        width: clamp(98px, calc(98px + 102 * ((100vw - 360px) / 216)), 200px);
+      }
+    }
+    &__gameInfoText,
+    &__gameInfoTextGameName {
+      font-size: clamp(32px, calc(32px + 22 * ((100vw - 360px) / 216)), 54px);
+    }
+    &__gameInfoTextGameName {
+      background: linear-gradient(90deg, #e221f4 25.98%, #ffe8aa 99.99%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    &__gameInfoShadow {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -4vw;
+      z-index: -1;
+      width: 100vw;
+      height: auto;
+    }
+    &__game {
+      width: 100%;
+      height: 54dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+    }
+    &__btn {
+      inline-size: 86%;
+      block-size: 52px;
+      font-size: 18px;
+      margin-top: max(16px, calc((100vh - 612px) * 0.2));
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@keyframes rain {
+  0%   { transform: translateY(-800%); opacity: 0; }  /* ще над полем, приховано */
+  1%   { opacity: 1; }                                /* миттєво робимо видимими на старті */
+  100% { transform: translateY(0%); opacity: 1; }     /* зупиняємось у видимій зоні */
+}
